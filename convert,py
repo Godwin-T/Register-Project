@@ -1,0 +1,10 @@
+import keras
+from facerecongnizer import FaceRecognizer
+from inception_resnet_v1 import InceptionResNetV1 
+
+#FaceRecognizer.load_model()
+model = InceptionResNetV1()
+
+model.load_weights('./weights/facenet_keras_weights.h5')
+model.save('converted.h5')
+#keras.models.save_model()

@@ -1,0 +1,5 @@
+*.h5
+weights/
+model/
+images/
+Face_Recongnition.ipynb
