@@ -4,19 +4,24 @@ import numpy as np
 
 class Database:
 
-    def __init__(self, hostname, username, password, database=None):
+    def __init__(self, hostname, username, password):
 
         self.host = hostname
         self.user = username
         self.password = password
-        self.database = database
 
-
-    def connect_db(self):
+    def connect_server(self):
         mydb = mysql.connector.connect( host = self.host,
                                         user = self.user,
                                         passwd = self.password,
-                                        database = self.database
+                                        )
+        return mydb
+
+    def connect_db(self, dbname):
+        mydb = mysql.connector.connect( host = self.host,
+                                        user = self.user,
+                                        passwd = self.password,
+                                        database = dbname
                                         )
         return mydb
 
