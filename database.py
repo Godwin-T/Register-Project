@@ -10,34 +10,31 @@ class Database:
         self.user = username
         self.password = password
 
-    def connect_server(self):
-        mydb = mysql.connector.connect( host = self.host,
-                                        user = self.user,
-                                        passwd = self.password,
-                                        )
-        return mydb
 
-    def connect_db(self, dbname):
+    def create_db(self, dbname = None):
+        
+        if dbname !=  None:
+            mydb = mysql.connector.connect( host = self.host,
+                                            user = self.user,
+                                            passwd = self.password,
+                                            )
+            cursor = mydb.cursor()
+            cursor.execute(f"CREATE DATABASE {dbname}")
+            print('Database Created successfully')
+
+    def connect_db(self, dbname = None):
         mydb = mysql.connector.connect( host = self.host,
                                         user = self.user,
                                         passwd = self.password,
                                         database = dbname
                                         )
         return mydb
-
-    
-
-    def create_db(self, name):
-        connection = Database.connect_db(self)
-        cursor = connection.cursor()
-        
-        cursor.execute(f"CREATE DATABASE {name}")
-        print('Database Created successfully')
+  
 
     def create_table(self, name, features, database):
 
-        self.database = database
-        connection = Database.connect_db(self)
+       # self.database = database
+        connection = self.connect_db(database)
         cursor = connection.cursor()
         cursor.execute(f"CREATE TABLE {name} {features}")
         print('Table created succeccfully')
