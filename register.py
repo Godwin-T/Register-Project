@@ -17,7 +17,6 @@ class worker():
 
 
     def __init__(self, new_connection, cursor, model, classifier):
-        #super().__init__(model)
         
         self.new_connection = new_connection
         self.cursor = cursor
